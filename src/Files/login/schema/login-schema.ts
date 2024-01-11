@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-@Schema({ timestamps: { createdAt: true, updatedAt: true } })
-export class LoginSchema {
+@Schema({ timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } })
+export class LoginModel {
   @Prop({ required: true, type: 'string', unique: true })
   username: string;
 
@@ -13,12 +13,6 @@ export class LoginSchema {
 
   @Prop({ required: true, type: 'boolean', default: false })
   status: boolean;
-
-  @Prop({ required: true, type: Date })
-  created_at: Date;
-
-  @Prop({ required: true, type: Date })
-  updated_at: Date;
 }
 
-export const Login = SchemaFactory.createForClass(LoginSchema);
+export const LoginSchema = SchemaFactory.createForClass(LoginModel);
