@@ -1,14 +1,18 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { createUSerDto } from './dto/login-dto';
-import { LoginService } from './login.service';
+import { CreateUserDto, UserLoginDto } from './dto/login-dto';
+import { UserService } from './login.service';
 
-@Controller({path:'files/login'})
+@Controller({ path: 'login' })
 export class LoginController {
-  constructor(private readonly loginService: LoginService) {}
+  constructor(private readonly loginService: UserService) {}
+
   @Post()
-  async createUser(@Body() body:createUSerDto){
-    console.log("in post",body);
-    
-    return await  this.loginService.createUser(body)
+  async userLogin(@Body() body: UserLoginDto) {
+    return await this.loginService.userLogin(body);
+  }
+
+  @Post('create')
+  async createUser(@Body() body: CreateUserDto) {
+    return await this.loginService.createUser(body);
   }
 }

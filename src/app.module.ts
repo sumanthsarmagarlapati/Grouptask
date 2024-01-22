@@ -9,7 +9,7 @@ import { AppConfigModule } from './configuration/config.module';
 
 @Module({
   imports: [
-    AppConfigModule,
+    // AppConfigModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -21,6 +21,7 @@ import { AppConfigModule } from './configuration/config.module';
       },
     }),
     LoginModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],
