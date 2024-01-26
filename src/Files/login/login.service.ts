@@ -74,7 +74,7 @@ export class UserService {
         );
       }
     } catch (error) {
-      return {
+      throw  {
         status: HttpStatus.BAD_REQUEST,
         message: error.response.message,
       };
