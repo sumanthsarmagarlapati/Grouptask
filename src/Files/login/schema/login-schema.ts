@@ -14,8 +14,8 @@ export class UserModel {
   @Prop({ required: true, type: 'string', minlength: 8 })
   password: string;
 
-  @Prop({ required: true, type: 'string', unique: true })
-  dob: string;
+  // @Prop({ required: true, type: 'string', unique: true })
+  // dob: string;
 
   @Prop({ required: true, type: 'boolean', default: true })
   active: boolean;
