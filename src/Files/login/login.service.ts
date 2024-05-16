@@ -72,9 +72,6 @@ export class UserService {
       }
     } catch (error) {
       throw error;
-      return {
-        status: HttpStatus.BAD_GATEWAY,
-        message: error.response.message,
       };
     }
   }
