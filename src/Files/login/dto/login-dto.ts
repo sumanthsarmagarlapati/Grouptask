@@ -9,31 +9,31 @@ import {
 export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
-  @MinLength(6)
+  @MinLength(3)
   @MaxLength(100)
   firstname: string;
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(6)
+  @MinLength(3)
   @MaxLength(100)
   lastname: string;
 
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(6)
-  @MaxLength(100)
-  dob: string;
+  // @IsString()
+  // @IsNotEmpty()
+  // @MinLength(3)
+  // @MaxLength(100)
+  // dob: string;
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(6)
+  @MinLength(3)
   @MaxLength(100)
   username: string;
 
   @IsString()
   @IsNotEmpty()
-  @MinLength(6)
+  @MinLength(3)
   @MaxLength(100)
   @Matches(
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,

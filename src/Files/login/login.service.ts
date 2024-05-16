@@ -21,7 +21,7 @@ export class UserService {
 
   async createUser(body: CreateUserDto) {
     try {
-      console.log('body',body);
+      console.log('body', body);
       const user = await this.userRepository.findOne({
         username: body['username'],
       });
@@ -30,17 +30,16 @@ export class UserService {
           `User with name ${body['username']} already exist!`,
         );
       }
-      body['code'] =await this._common_service.generateCode('USR');
-      console.log("body before",body);
-      
+      body['code'] = await this._common_service.generateCode('USR');
+      console.log('body before', body);
+
       await this.userRepository.create(body);
       return {
         message: 'Created successfully.',
         status: HttpStatus.CREATED,
       };
     } catch (error) {
-      console.log("in error service",error);
-      
+      console.log('in error service', error);
       return {
         status: HttpStatus.BAD_REQUEST,
         message: error,
@@ -68,16 +67,25 @@ export class UserService {
           status: HttpStatus.OK,
           message: 'Login user successfully.',
         };
-      }else{
-        throw new NotFoundException(
-          `Invalid credentials!`,
-        );
+      } else {
+        throw new NotFoundException(`Invalid credentials!`);
       }
     } catch (error) {
+      throw error;
       return {
-        status: HttpStatus.BAD_REQUEST,
+        status: HttpStatus.BAD_GATEWAY,
         message: error.response.message,
       };
     }
+  }
+
+  async getUsers() {
+    console.log('in here');
+
+    try {
+      const users = await this.userRepository.find({});
+      console.log(users);
+      return users;
+    } catch (error) {}
   }
 }
