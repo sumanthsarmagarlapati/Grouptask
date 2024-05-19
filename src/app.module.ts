@@ -11,7 +11,7 @@ import { DataSource } from 'typeorm';
 
 @Module({
   imports: [
-    // AppConfigModule,
+    AppConfigModule,
     // TypeOrmModule.forRoot({
     //   type: 'mysql',
     //   host: 'localhost',
@@ -39,7 +39,7 @@ import { DataSource } from 'typeorm';
   providers: [AppService],
 })
 export class AppModule implements NestModule {
-  constructor(private dataSource: DataSource) {}
+  // constructor(private dataSource: DataSource) {}
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(MiddleWare).forRoutes('*');
   }
