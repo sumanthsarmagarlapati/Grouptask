@@ -27,7 +27,7 @@ import { DataSource } from 'typeorm';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         return {  
-          uri: 'mongodb://0.0.0.0:27017/local',
+          uri: 'mongodb+srv://sumanth:Gsmgrl0908@sumanth.hoxsmsm.mongodb.net/test',
           retryAttempts: 10,
         };
       },
