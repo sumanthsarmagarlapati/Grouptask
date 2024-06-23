@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { LoginModule } from './Files/login/login.module';
@@ -6,8 +6,7 @@ import { MiddleWare } from './Middleware/middleware';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppConfigModule } from './configuration/config.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
+import { env } from 'process';
 
 @Module({
   imports: [
@@ -26,20 +25,22 @@ import { DataSource } from 'typeorm';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
-        return {  
-          uri: 'mongodb+srv://sumanth:Gsmgrl0908@sumanth.hoxsmsm.mongodb.net/test',
+        return {
+          uri: env.MONGO_URI,
+          name: env.MONDO_DB_NAME,
           retryAttempts: 10,
         };
       },
     }),
     LoginModule,
-    
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {
-  // constructor(private dataSource: DataSource) {}
+  constructor(private configService: ConfigService) {
+    console.log(configService.get('MONGO_CONFIG'));
+  }
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(MiddleWare).forRoutes('*');
   }

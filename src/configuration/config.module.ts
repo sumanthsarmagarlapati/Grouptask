@@ -7,5 +7,7 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
   ],
+  
+  exports: [ConfigModule],
 })
 export class AppConfigModule {}
