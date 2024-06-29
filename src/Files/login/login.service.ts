@@ -25,6 +25,7 @@ export class UserService {
       const user = await this.userRepository.findOne({
         username: body['username'],
       });
+      
       if (user) {
         throw new NotAcceptableException(
           `User with name ${body['username']} already exist!`,
@@ -52,13 +53,13 @@ export class UserService {
       const user = await this.userRepository.findOne({
         username: body['username'],
       });
-      console.log(user, 'user');
 
       if (!user) {
         throw new NotFoundException(
           `User with name ${body['username']} not exist!`,
         );
       }
+
       if (
         user['username'] === body['username'] &&
         user['password'] === body['password']
